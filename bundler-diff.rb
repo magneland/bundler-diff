@@ -68,9 +68,11 @@ def compare_gem(gem_name, old_gem_version, new_gem_version, git_compare_options)
   system cmd
 end
 
-cmd = "gem sources --add #{ENV['GEM_COMPARE_SOURCES']}"
-puts cmd
-system cmd
+if ENV['GEM_COMPARE_SOURCES']
+  cmd = "gem sources --add #{ENV['GEM_COMPARE_SOURCES']}"
+  puts cmd
+  system cmd
+end
 
 options = {}
 options_parser = OptionParser.new do |parser|
@@ -88,6 +90,8 @@ git_compare_options = both_args[1]
 
 parse_file(options, git_compare_options)
 
-cmd = "gem sources --remove #{ENV['GEM_COMPARE_SOURCES']}"
-puts cmd
-system cmd
+if ENV['GEM_COMPARE_SOURCES']
+  cmd = "gem sources --remove #{ENV['GEM_COMPARE_SOURCES']}"
+  puts cmd
+  system cmd
+end
