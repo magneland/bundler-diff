@@ -40,6 +40,10 @@ def parse_file(options = {}, git_compare_options = {})
         end
     end
   end
+
+  if file_under_examination
+    compare_gems(removed_gems, added_gems, git_compare_options)
+  end
 end
 
 def compare_gems(removed_gems={}, added_gems={}, git_compare_options={})
